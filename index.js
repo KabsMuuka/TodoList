@@ -1,63 +1,94 @@
+//saving to local storage
+// :: Business logic resposible  for calculations,implementing the rules, algorithms used 
 
-//MODEL :: Business logic resposible  for calculations,implementing the rules, algorithms used 
+    //MODEL
 
- //get id of thisDiv
     const renderInDiv = document.getElementById('thisDiv');
-
     //object key value pair;
-    let cart = [{name:'Kabs Muuka'}];
+
+    let cart;
+
+    //retrieving Json strings and converting them to array of objects using
+    //JSON.parse()
+    const storedTodos = JSON.parse(localStorage.getItem('todos'));
+
+    //checking if storedTodos is in array form, if true render on web
+     if(Array.isArray(storedTodos)){
+         cart = storedTodos;
+    }else{
+        cart = [{name:'Listed here',
+        id: '1'
+    }];
+    }
+
+    function createTodo(item){
+        const id = new Date().getTime().toString();
+        //adding items to cart
+            cart.push
+            ({
+            name:item,
+            id:id
+        });
+        //save updated string to local storage
+        savedTodos();
+    }
+
+    function Remove(buttonId){
+        //the filtered cart is reassigned to cart and compares the 
+        //item.id to buttonId! if its true its return false;
+        cart = cart.filter(function(item){
+
+        //clears the elements before Render function is called
+        const clear = document.getElementById('thisDiv').innerHTML = '';
+
+        if(item.id !== buttonId){
+            //false means if item.id equals buttonId it will exclude the targeted item
+            return true;
+        }else{
+            return false;
+            }
+        });
+        //save updated string to local storage
+        savedTodos();
+    }
+
+
+    //storing in localStorage: can only be saved when elements are in strings
+    //hence JSON.stringify()
+    function savedTodos(){
+        localStorage.setItem('todos',JSON.stringify(cart));
+    }
 
 
 //CONTROL: 
 //Controls inputs and acts as an intermediate between model and View
        
-    //add items to "cart"
-        function addToCart(){
-            //clears elements in div
-            const clear = document.getElementById('thisDiv').innerHTML = '';
-            //end...
-            const userInput = document.getElementById('userInput');
-            const item = userInput.value;
 
-            const id = new Date().getTime().toString();
-            //adding items to cart
+    function addToCart(){
+        //clears elements in div
+        const clear = document.getElementById('thisDiv').innerHTML = '';
+        //end...
+        const userInput = document.getElementById('userInput');
+        const item = userInput.value;
 
-                cart.push
-                ({
-                name:item,
-
-                id:id
-
-                });
-                
-        //updates added items to page
-            Render();
-            }
-            
-       //function that handles the delete button
-        function Delete(event){
-            const targetedButton = event.target;
-            const buttonId = targetedButton.id;
+        createTodo(item);
         
-            //the filtered cart is reassigned to cart and compares the 
-            //item.id to buttonId! if its true its return false;
-            cart = cart.filter(function(item){
-
-                //clears the elements before Render function is called
-                const clear = document.getElementById('thisDiv').innerHTML = '';
-
-                if(item.id !== buttonId){
-                    //false means if item.id equals buttonId it will exclude the targeted item
-                    return true;
-                }else{
-                    return false;
-                }
-            });
-            Render();
+    //updates added items to page
+        Render();
         }
 
+    //function that handles the delete button
+    function Delete(event){
+        const targetedButton = event.target;
+        const buttonId = targetedButton.id;
+        //calling remove function
+        Remove(buttonId);
+
+        Render();
+    }
+
 //VIEW : Displays the UI 
-        //responsble for rendering elements on webpage
+
     function Render(){
         cart.forEach(function(item) {
         const element = document.createElement('div');
