@@ -29,7 +29,7 @@
             name:item,
             id:id
         });
-        //save updated string to local storage
+       //update added items in local storage (as strings)  
         savedTodos();
     }
 
@@ -48,13 +48,12 @@
             return false;
             }
         });
-        //save updated string to local storage
+        //update added items in local storage (as strings) 
         savedTodos();
     }
 
 
-    //storing in localStorage: can only be saved when elements are in strings
-    //hence JSON.stringify()
+    //storing in localStorage in string format
     function savedTodos(){
         localStorage.setItem('todos',JSON.stringify(cart));
     }
