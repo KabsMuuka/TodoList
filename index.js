@@ -71,12 +71,11 @@
         const userInput = document.getElementById('userInput');
         const item = userInput.value;
 
-
-
         createTodo(item);
 
         
-    //updates added items to page
+        userInput.value = '';
+        //updates added items to page
         Render();
         }
 
@@ -98,6 +97,8 @@
         //creating a delete button
         const deleteBtn = document.createElement('button');
         deleteBtn.innerText = 'Delete';
+        //classnaming delete button
+        deleteBtn.classList.add('Delete-button');
 
         //attach an id to each button
         deleteBtn.id = item.id;
