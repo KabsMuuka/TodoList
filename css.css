@@ -1,0 +1,44 @@
+.title{
+    font-size: larger;
+    text-align: center;
+}
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.custom-input{
+    border-radius: 4px;
+    border-color: rgb(141, 198, 245);
+    width : 300px; /* Adjust the width as needed */
+    height: 15px; /* Adjust the height as needed */
+    padding: 8px; /* Add some padding to the input box */
+    font-size: 16px; /* Adjust the font size as needed */
+}
+.submit-button{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 35px; /* Adjust the height as needed */
+    margin-left: 10px;
+    background-color: rgb(45, 117, 158);
+    color: white;
+}
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .custom-input {
+    width: 100%; /* Make the input box width 100% of the container width for better responsiveness */
+    height: 18px; /* Increase the height for better visibility and touch interaction on mobile devices */
+  }
+
+  /* You can also adjust the font-size for better readability on mobile devices */
+  .custom-input {
+    font-size: 14px;
+  }
+}

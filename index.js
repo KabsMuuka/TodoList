@@ -71,7 +71,10 @@
         const userInput = document.getElementById('userInput');
         const item = userInput.value;
 
+
+
         createTodo(item);
+
         
     //updates added items to page
         Render();
@@ -86,7 +89,6 @@
 
         Render();
     }
-
 //VIEW : Displays the UI 
 
     function Render(){

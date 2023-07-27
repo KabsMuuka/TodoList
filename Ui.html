@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html> 
     <head>
-       <title>TodoList</title> 
+       <title >TodoList</title> 
+
+       <link rel="stylesheet" href="css.css">
+
     </head>
     <body>
-        <h1>TODO LIST</h1>
-        <input type="text" name="" id="userInput">
-        <button onclick ='addToCart()'> Submit</button>
-       
-        <div id="thisDiv"></div>
+        <p class="title">TO-DO</p>
+        <div class="container"> 
+            <input class="custom-input" type="text" name="" id="userInput" placeholder="Your todo list">
+            <button class="submit-button" onclick ='addToCart()'> Add Todo</button>
+
+        </div>
+    
+        <ul id="thisDiv"> </ul>
+
+
 
         <script
         // srcing from index.js
