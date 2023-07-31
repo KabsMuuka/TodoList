@@ -70,8 +70,11 @@
         const userInput = document.getElementById('userInput');
         const item = userInput.value;
 
-        createTodo(item);
-
+        if(item !==""){
+            createTodo(item);
+        }else{
+            alert('Sorry type your todo first ):');
+        }
         
         userInput.value = '';
         //updates added items to page
