@@ -51,18 +51,16 @@
         //update added items in local storage (as strings) 
         savedTodos();
     }
-
-
+    
     //storing in localStorage in string format
     function savedTodos(){
         localStorage.setItem('todos',JSON.stringify(cart));
     }
 
 
+
 //CONTROL: 
 //Controls inputs and acts as an intermediate between model and View
-       
-
     function addToCart(){
         //clears elements in div
         const clear = document.getElementById('thisDiv').innerHTML = '';
@@ -90,28 +88,53 @@
 
         Render();
     }
+    
+
+
 //VIEW : Displays the UI 
 
     function Render(){
         cart.forEach(function(item) {
         const element = document.createElement('div');
-        element.innerHTML = item.name
-        //creating a delete button
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerText = 'Delete';
-        //classnaming delete button
-        deleteBtn.classList.add('Delete-button');
+        element.classList.add("div-background");
 
+        //container for text and buttons
+        const containerForTextAndButtons = document.createElement('div');
+        containerForTextAndButtons.classList.add("containerForTextAndButtons")
+
+
+        //button container 
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add("button-container");
+
+        element.innerHTML = item.name
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'X';
+        //classname
+        deleteBtn.classList.add('Delete-button');
         //attach an id to each button
         deleteBtn.id = item.id;
-
-        //assigning each delete button to each element
-        element.appendChild(deleteBtn);
-        
         //delete function
         deleteBtn.onclick = Delete;
+        
+        //mark done button
+        const markDoneBtn = document.createElement('button');
+        markDoneBtn.classList.add("markDoneBtn");
+        markDoneBtn.innerText = "D";
+        markDoneBtn.id = item.id;
+        
 
-            //render in div
+         //append buttons to buttonContainer
+         buttonContainer.appendChild(deleteBtn);
+         buttonContainer.appendChild(markDoneBtn);
+        
+        //apppend buttons to containerForTextAndButtons
+         containerForTextAndButtons.appendChild(buttonContainer);
+
+        //append containerForTextAndButtons to main elemnet div 
+         element.appendChild(containerForTextAndButtons); 
+        
+        //render in ul
         renderInDiv.appendChild(element);
         });
     }
